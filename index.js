@@ -19,8 +19,10 @@ const jestConfig = {
 app.post("/", jsonParser, (req, res) => {
   if (!req.body) res.end();
 
+  const token = Math.floor(Math.random() * 1000) + 1; // random number between 1 and 1000, could be a unique idetifier for each user
+
   // Write the code to test
-  const filePath = "./__tests__/tmp/setup12345.js"; // setup12345 could be a unique idetifier for each user
+  const filePath = `./__tests__/tmp/setup${token}.js`;
   const code = req.body.code; // "const add = (a, b) => a + b;"
   const fileContent = code + "\n\nglobal.add = add";
 
@@ -31,7 +33,7 @@ app.post("/", jsonParser, (req, res) => {
 
   // Run Jest and send back the result
   jest.runCLI(jestConfig, jestConfig.projects).then(result => {
-    res.send(result.results.success);
+    res.send({ success: result.results.success });
   });
 });
 
