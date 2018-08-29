@@ -8,11 +8,26 @@ This is for demonstration purposes, feel free to fork it and adapt it to your us
 
 1. Clone repository
 2. Start server running `npm start`
+
+**Test JS code example**
+
 3. Make a POST request with an `application/json` body like:
 
 ```json
 {
+  "test": "add",
   "code": "your code stringified here"
+}
+```
+
+**Test React component example**
+
+3. Make a POST request with an `application/json` body like:
+
+```json
+{
+  "test": "MyText",
+  "code": "import React from \"react\"; const MyText = ({ name }) => <p>Hello ${name}</p>;"
 }
 ```
 
