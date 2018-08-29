@@ -1,0 +1,20 @@
+{
+  "name": "jest-test-my-code",
+  "version": "0.0.1",
+  "description": "Test code server side with Jest",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "jest",
+    "test",
+    "server"
+  ],
+  "author": "Enzo Ferey",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.16.3",
+    "jest": "^23.5.0"
+  }
+}
