@@ -15,7 +15,12 @@
   "author": "Enzo Ferey",
   "license": "MIT",
   "dependencies": {
+    "babel-core": "^6.26.3",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-react": "^6.24.1",
     "express": "^4.16.3",
-    "jest": "^23.5.0"
+    "jest": "^23.5.0",
+    "react": "^16.4.2",
+    "react-test-renderer": "^16.4.2"
   }
 }

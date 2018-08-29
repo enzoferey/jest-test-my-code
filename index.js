@@ -10,7 +10,6 @@ const jest = require("jest");
 // create application/json parser
 const jsonParser = bodyParser.json();
 
-// Complements jest.config.js file
 const jestConfig = {
   projects: ["."],
   silent: true // no console from tests
@@ -22,14 +21,18 @@ app.post("/", jsonParser, (req, res) => {
   const token = Math.floor(Math.random() * 1000) + 1; // random number between 1 and 1000, could be a unique idetifier for each user
 
   // Write the code to test
+  const testName = req.body.test;
   const filePath = `./__tests__/tmp/setup${token}.js`;
   const code = req.body.code; // "const add = (a, b) => a + b;"
-  const fileContent = code + "\n\nglobal.add = add";
+  const fileContent = code + `\n\nglobal.${testName} = ${testName}`;
 
   fs.writeFileSync(filePath, fileContent);
 
   // Setup the file to set global function to be used in the tests
   jestConfig.setupTestFrameworkScriptFile = filePath;
+
+  // Only run the test asked
+  jestConfig.testMatch = ["<rootDir>/__tests__/" + testName + ".{test.js,js}"];
 
   // Run Jest and send back the result
   jest.runCLI(jestConfig, jestConfig.projects).then(result => {
